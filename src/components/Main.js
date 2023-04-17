@@ -3,17 +3,17 @@ import React from 'react';
 function Main() {
   
   function handleEditAvatarClick() {
-    const popupWithUpdateAvatarForm = document.querySelector('.popup_act_update-avatar');
+    const popupWithUpdateAvatarForm = document.querySelector('.popup_type_avatar');
     popupWithUpdateAvatarForm.classList.add('popup_opened');
   }
 
   function handleEditProfileClick() {
-    const popupWithEditProfileForm = document.querySelector('.popup_act_edit-profile');
+    const popupWithEditProfileForm = document.querySelector('.popup_type_profile');
     popupWithEditProfileForm.classList.add('popup_opened');
   }
 
   function handleAddPlaceClick() {
-    const popupWithAddCardForm = document.querySelector('.popup_act_add-card');
+    const popupWithAddCardForm = document.querySelector('.popup_type_card');
     popupWithAddCardForm.classList.add('popup_opened');
   }
   
