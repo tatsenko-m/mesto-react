@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
   return (
@@ -56,15 +57,6 @@ function App() {
         />
         <span className="popup__error" id="link-error"></span>
       </PopupWithForm>
-      <div className="popup popup_type_image">
-        <div className="popup__img-container">
-          <button className="popup__close-button" type="button"></button>
-          <figure className="popup__figure">
-            <img className="popup__image" src="/" alt="" />
-            <figcaption className="popup__caption"></figcaption>
-          </figure>
-        </div>
-      </div>
       <PopupWithForm title="Вы уверены?" name="confirmation"></PopupWithForm>
       <PopupWithForm title="Обновить аватар" name="avatar">
         <input
@@ -78,6 +70,7 @@ function App() {
         />
         <span className="popup__error" id="avatar-error"></span>
       </PopupWithForm>
+      <ImagePopup />
       <template id="card-template">
         <li className="card">
           <img className="card__image" src="/" alt="" />
