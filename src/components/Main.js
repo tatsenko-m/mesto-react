@@ -2,7 +2,7 @@ import React from 'react';
 import Card from './Card';
 import api from '../utils/api';
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
+function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   
   const [userName, setUserName] = React.useState('');
   const [userDescription, setUserDescription] = React.useState('');
@@ -48,20 +48,8 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
       </section>
       <section className="gallery">
         <ul className="gallery__list">
-          {cards.map(({id, name, link, likesNumber}) => (
-            <Card key={id} card={(
-              <li className="card">
-                <img className="card__image" src={link} alt={`Фото ${name}`} />
-                <div className="card__description">
-                  <h2 className="card__title">{name}</h2>
-                  <div className="card__like-group">
-                    <button className="card__like-button" type="button"></button>
-                    <span className="card__like-counter">{likesNumber}</span>
-                  </div>
-                </div>
-                <button className="card__delete-button" type="button"></button>
-              </li>
-            )} />
+          {cards.map((card) => (
+            <Card card={card} onCardClick={onCardClick} />
           ))}
         </ul>
       </section>
