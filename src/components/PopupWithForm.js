@@ -1,12 +1,25 @@
 import React from 'react';
 
 function PopupWithForm({ title, name, children, isOpen, onClose }) {
+  
+  React.useEffect(() => {
+    const handleEscKeyDown = (evt) => {
+      if (evt.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscKeyDown);
+    
+    return () => {
+      window.removeEventListener('keydown', handleEscKeyDown);
+    };
+  }, [isOpen, onClose]);
+  
   return (
     <div
       className={`popup popup_type_${name}${isOpen ? ' popup_opened' : ''}`}
-      onMouseDown={(evt) =>
-        evt.target.classList.contains('popup_opened') ? onClose() : null
-      }
+      onMouseDown={(evt) => evt.target.classList.contains('popup_opened') ? onClose() : null}
     >
       <div
         className={`popup__container${
