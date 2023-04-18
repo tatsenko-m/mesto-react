@@ -102,7 +102,7 @@ function App() {
         />
         <span className="popup__error" id="avatar-error"></span>
       </PopupWithForm>
-      <ImagePopup isOpen={isImagePopupOpen} card={selectedCard} />
+      <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
     </>
   );
 }
