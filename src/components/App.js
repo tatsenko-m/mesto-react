@@ -94,19 +94,6 @@ function App() {
         <span className="popup__error" id="avatar-error"></span>
       </PopupWithForm>
       <ImagePopup />
-      <template id="card-template">
-        <li className="card">
-          <img className="card__image" src="/" alt="" />
-          <div className="card__description">
-            <h2 className="card__title"></h2>
-            <div className="card__like-group">
-              <button className="card__like-button" type="button"></button>
-              <span className="card__like-counter"></span>
-            </div>
-          </div>
-          <button className="card__delete-button" type="button"></button>
-        </li>
-      </template>
     </>
   );
 }
