@@ -6,12 +6,29 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 function App() {
+  
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(!isEditAvatarPopupOpen);
+  }
+
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(!isEditProfilePopupOpen);
+  }
+
+  function handleAddPlaceClick() {
+    setIsAddPlacePopupOpen(!isAddPlacePopupOpen);
+  }
+
   return (
     <>
       <Header />
-      <Main />
+      <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} />
       <Footer />
-      <PopupWithForm title="Редактировать профиль" name="profile">
+      <PopupWithForm title="Редактировать профиль" name="profile" isOpen={isEditProfilePopupOpen}>
         <input
           name="name"
           id="name"
@@ -35,7 +52,7 @@ function App() {
         />
         <span className="popup__error" id="about-error"></span>
       </PopupWithForm>
-      <PopupWithForm title="Новое место" name="card">
+      <PopupWithForm title="Новое место" name="card" isOpen={isAddPlacePopupOpen}>
         <input
           name="title"
           id="title"
@@ -58,7 +75,7 @@ function App() {
         <span className="popup__error" id="link-error"></span>
       </PopupWithForm>
       <PopupWithForm title="Вы уверены?" name="confirmation"></PopupWithForm>
-      <PopupWithForm title="Обновить аватар" name="avatar">
+      <PopupWithForm title="Обновить аватар" name="avatar" isOpen={isEditAvatarPopupOpen}>
         <input
           name="avatar"
           id="avatar"
