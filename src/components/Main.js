@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './Card';
 import api from '../utils/api';
 
 function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
@@ -29,25 +30,26 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
 
   return (
     <main>
-        <section className="profile">
-          <div className="profile__avatar-container">
-            <img
-              className="profile__avatar"
-              src={userAvatar}
-              alt="Аватар профиля"
-              onClick={onEditAvatar}
-            />
-          </div>
-          <article className="profile__info">
-            <h1 className="profile__title">{userName}</h1>
-            <p className="profile__subtitle">{userDescription}</p>
-            <button className="profile__edit-button" type="button" onClick={onEditProfile}></button>
-          </article>
-          <button className="profile__add-button" type="button" onClick={onAddPlace}></button>
-        </section>
-        <section className="gallery">
-          <ul className="gallery__list">
-            {cards.map(({name, link, likesNumber}) => (
+      <section className="profile">
+        <div className="profile__avatar-container">
+          <img
+            className="profile__avatar"
+            src={userAvatar}
+            alt="Аватар профиля"
+            onClick={onEditAvatar}
+          />
+        </div>
+        <article className="profile__info">
+          <h1 className="profile__title">{userName}</h1>
+          <p className="profile__subtitle">{userDescription}</p>
+          <button className="profile__edit-button" type="button" onClick={onEditProfile}></button>
+        </article>
+        <button className="profile__add-button" type="button" onClick={onAddPlace}></button>
+      </section>
+      <section className="gallery">
+        <ul className="gallery__list">
+          {cards.map(({id, name, link, likesNumber}) => (
+            <Card key={id} card={(
               <li className="card">
                 <img className="card__image" src={link} alt={`Фото ${name}`} />
                 <div className="card__description">
@@ -59,10 +61,11 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar }) {
                 </div>
                 <button className="card__delete-button" type="button"></button>
               </li>
-            ))}
-          </ul>
-        </section>
-      </main>
+            )} />
+          ))}
+        </ul>
+      </section>
+    </main>
   );
 }
 
