@@ -21,6 +21,10 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
     .catch((err) => alert(err));
   }, []);
 
+  const cardsElements = cards.map((card) => (
+    <Card card={card} onCardClick={onCardClick} />
+  ));
+
   return (
     <main>
       <section className="profile">
@@ -41,9 +45,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       </section>
       <section className="gallery">
         <ul className="gallery__list">
-          {cards.map((card) => (
-            <Card card={card} onCardClick={onCardClick} />
-          ))}
+          {cardsElements}
         </ul>
       </section>
     </main>
