@@ -60,8 +60,8 @@ function App() {
           className="popup__item popup__item_type_name"
           type="text"
           placeholder="Имя"
-          minlength="2"
-          maxlength="40"
+          minLength="2"
+          maxLength="40"
           required
         />
         <span className="popup__error" id="name-error"></span>
@@ -71,8 +71,8 @@ function App() {
           className="popup__item popup__item_type_about"
           type="text"
           placeholder="О себе"
-          minlength="2"
-          maxlength="200"
+          minLength="2"
+          maxLength="200"
           required
         />
         <span className="popup__error" id="about-error"></span>
@@ -89,8 +89,8 @@ function App() {
           className="popup__item popup__item_type_title"
           type="text"
           placeholder="Название"
-          minlength="2"
-          maxlength="30"
+          minLength="2"
+          maxLength="30"
           required
         />
         <span className="popup__error" id="title-error"></span>
