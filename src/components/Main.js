@@ -22,7 +22,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
   }, []);
 
   const cardsElements = cards.map((card) => (
-    <Card card={card} onCardClick={onCardClick} />
+    <Card card={card} key={card._id} onCardClick={onCardClick} />
   ));
 
   return (
