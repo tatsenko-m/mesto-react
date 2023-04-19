@@ -18,7 +18,7 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
     }
   }, [isOpen, onClose]);
 
-  const handleOverlayClick = (evt) => {
+  const handleOverlayMouseDown = (evt) => {
     if (evt.target.classList.contains('popup_opened')) {
       onClose();
     }
@@ -27,7 +27,7 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
   return (
     <div
       className={`popup popup_type_${name}${isOpen ? ' popup_opened' : ''}`}
-      onMouseDown={handleOverlayClick}
+      onMouseDown={handleOverlayMouseDown}
     >
       <div
         className={`popup__container${

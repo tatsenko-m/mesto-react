@@ -1,10 +1,17 @@
 import React from "react";
 
 function ImagePopup(props) {
+  
+  const handleOverlayMouseDown = (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      props.onClose();
+    }
+  };
+
   return (
     <div 
       className={`popup popup_type_image${props.isOpen ? ' popup_opened' : ''}`}
-      onMouseDown={(evt) => evt.target.classList.contains('popup_opened') ? props.onClose() : null}
+      onMouseDown={handleOverlayMouseDown}
     >
         <div className="popup__img-container">
           <button className="popup__close-button" type="button" onClick={props.onClose}></button>
