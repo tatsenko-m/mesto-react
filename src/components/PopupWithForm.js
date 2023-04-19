@@ -9,11 +9,13 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
       }
     };
 
-    window.addEventListener('keydown', handleEscKeyDown);
+    if (isOpen) {
+      window.addEventListener('keydown', handleEscKeyDown);
     
-    return () => {
-      window.removeEventListener('keydown', handleEscKeyDown);
-    };
+      return () => {
+        window.removeEventListener('keydown', handleEscKeyDown);
+      };
+    }
   }, [isOpen, onClose]);
   
   return (
