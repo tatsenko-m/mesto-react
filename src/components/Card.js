@@ -13,7 +13,7 @@ function Card(props) {
         <h2 className="card__title">{props.card.name}</h2>
         <div className="card__like-group">
           <button className="card__like-button" type="button"></button>
-          <span className="card__like-counter">{props.card.likesNumber}</span>
+          <span className="card__like-counter">{props.card.likes.length}</span>
         </div>
       </div>
       <button className="card__delete-button" type="button"></button>

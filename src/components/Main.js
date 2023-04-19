@@ -16,14 +16,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       setUserDescription(user.about);
       setUserAvatar(user.avatar);
 
-      setCards(
-        cards.map((item) => ({
-          id: item._id,
-          name: item.name,
-          link: item.link,
-          likesNumber: item.likes.length
-        }))
-      );
+      setCards(cards);
     })
     .catch((err) => alert(err));
   }, []);
