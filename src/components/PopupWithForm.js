@@ -2,6 +2,26 @@ import React from 'react';
 
 function PopupWithForm({ title, name, children, isOpen, onClose }) {
   
+  function getContainerClassName(name) {
+    let className = 'popup__container';
+    if (name === 'confirmation') {
+      className += ' popup__container_size_s';
+    } else if (name === 'avatar') {
+      className += ' popup__container_size_m';
+    }
+    return className;
+  }
+
+  function getSaveButtonText(name) {
+    if (name === 'confirmation') {
+      return 'Да';
+    } else if (name === 'card') {
+      return 'Создать';
+    } else {
+      return 'Сохранить';
+    }
+  }
+
   React.useEffect(() => {
     const handleEscKeyDown = (evt) => {
       if (evt.key === 'Escape' && isOpen) {
@@ -29,15 +49,7 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
       className={`popup popup_type_${name}${isOpen ? ' popup_opened' : ''}`}
       onMouseDown={handleOverlayMouseDown}
     >
-      <div
-        className={`popup__container${
-          name === 'confirmation'
-            ? ' popup__container_size_s'
-            : name === 'avatar'
-            ? ' popup__container_size_m'
-            : ''
-        }`}
-      >
+      <div className={getContainerClassName(name)}>
         <button
           className="popup__close-button"
           type="button"
@@ -47,11 +59,7 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
           <h2 className="popup__title">{title}</h2>
           {children}
           <button className="popup__save-button" type="submit">
-            {name === 'confirmation'
-              ? 'Да'
-              : name === 'card'
-              ? 'Создать'
-              : 'Сохранить'}
+            {getSaveButtonText(name)}
           </button>
         </form>
       </div>
