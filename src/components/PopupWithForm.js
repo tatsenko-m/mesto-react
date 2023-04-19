@@ -17,11 +17,17 @@ function PopupWithForm({ title, name, children, isOpen, onClose }) {
       };
     }
   }, [isOpen, onClose]);
+
+  const handleOverlayClick = (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      onClose();
+    }
+  };
   
   return (
     <div
       className={`popup popup_type_${name}${isOpen ? ' popup_opened' : ''}`}
-      onMouseDown={(evt) => evt.target.classList.contains('popup_opened') ? onClose() : null}
+      onMouseDown={handleOverlayClick}
     >
       <div
         className={`popup__container${
