@@ -1,4 +1,4 @@
-# <picture><img src="./docs/project-logo.png" width="200" alt="Лого проекта"></picture> React App ![GitHub repo size](https://img.shields.io/github/repo-size/tatsenko-m/mesto-react) ![GitHub top language](https://img.shields.io/github/languages/top/tatsenko-m/mesto-react)
+# <picture><img src="https://raw.githubusercontent.com/tatsenko-m/mesto-react/main/docs/project-logo.png" width="200" alt="Лого проекта"></picture> React App ![GitHub repo size](https://img.shields.io/github/repo-size/tatsenko-m/mesto-react) ![GitHub top language](https://img.shields.io/github/languages/top/tatsenko-m/mesto-react)
 
 Версия приложения [Mesto](https://github.com/tatsenko-m/mesto), портированная на React.
 
