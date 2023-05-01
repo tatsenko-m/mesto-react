@@ -44,6 +44,14 @@ function App() {
     .catch((err) => alert(err));
   }
 
+  function handleCardDelete(card) {
+    api.deleteCard(card._id)
+    .then(() => {
+      setCards(() => cards.filter((c) => c._id !== card._id));
+    })
+    .catch((err) => alert(err));
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
@@ -71,6 +79,7 @@ function App() {
           onEditAvatar={handleEditAvatarClick} 
           onCardClick={handleCardClick} 
           onCardLike={handleCardLike} 
+          onCardDelete={handleCardDelete} 
           cards={cards}
         />
         <Footer />
