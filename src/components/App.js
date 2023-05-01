@@ -1,9 +1,10 @@
-import React from "react";
-import Header from "./Header";
-import Main from "./Main";
-import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
-import ImagePopup from "./ImagePopup";
+import React from 'react';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
+import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
+import EditProfilePopup from './EditProfilePopup';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -83,35 +84,7 @@ function App() {
           cards={cards}
         />
         <Footer />
-        <PopupWithForm 
-          title="Редактировать профиль" 
-          name="profile" 
-          isOpen={isEditProfilePopupOpen} 
-          onClose={closeAllPopups}
-        >
-          <input
-            name="name"
-            id="name"
-            className="popup__item popup__item_type_name"
-            type="text"
-            placeholder="Имя"
-            minLength="2"
-            maxLength="40"
-            required
-          />
-          <span className="popup__error" id="name-error"></span>
-          <input
-            name="about"
-            id="about"
-            className="popup__item popup__item_type_about"
-            type="text"
-            placeholder="О себе"
-            minLength="2"
-            maxLength="200"
-            required
-          />
-          <span className="popup__error" id="about-error"></span>
-        </PopupWithForm>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
         <PopupWithForm 
           title="Новое место" 
           name="card" 
