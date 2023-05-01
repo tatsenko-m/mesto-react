@@ -5,6 +5,7 @@ import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
+import EditAvatarPopup from './EditAvatarPopup';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -122,23 +123,7 @@ function App() {
           <span className="popup__error" id="link-error"></span>
         </PopupWithForm>
         <PopupWithForm title="Вы уверены?" name="confirmation"></PopupWithForm>
-        <PopupWithForm 
-          title="Обновить аватар" 
-          name="avatar" 
-          isOpen={isEditAvatarPopupOpen} 
-          onClose={closeAllPopups}
-        >
-          <input
-            name="avatar"
-            id="avatar"
-            className="popup__item popup__item_type_link"
-            type="url"
-            placeholder="Ссылка на картинку"
-            ondblclick="this.select()"
-            required
-          />
-          <span className="popup__error" id="avatar-error"></span>
-        </PopupWithForm>
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
     </>
