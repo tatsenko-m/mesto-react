@@ -61,6 +61,15 @@ function App() {
     setSelectedCard({});
   }
 
+  function handleUpdateUser({ name, about }) {
+    api.setUserInfo({ name, about })
+    .then((user) => {
+      setCurrentUser(user);
+      closeAllPopups();
+    })
+    .catch((err) => alert(err));
+  }
+
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([user, cards]) => {
@@ -84,7 +93,7 @@ function App() {
           cards={cards}
         />
         <Footer />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
         <PopupWithForm 
           title="Новое место" 
           name="card" 

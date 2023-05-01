@@ -22,13 +22,13 @@ class Api {
     });
   }
 
-  editUserInfo(data) {
+  setUserInfo({ name, about }) {
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        about: data.about
+        name: name,
+        about: about
       })
     })
     .then((res) => {
