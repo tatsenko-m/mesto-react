@@ -6,6 +6,7 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
 import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
@@ -103,33 +104,7 @@ function App() {
         />
         <Footer />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-        <PopupWithForm 
-          title="Новое место" 
-          name="card" 
-          isOpen={isAddPlacePopupOpen} 
-          onClose={closeAllPopups}
-        >
-          <input
-            name="title"
-            id="title"
-            className="popup__item popup__item_type_title"
-            type="text"
-            placeholder="Название"
-            minLength="2"
-            maxLength="30"
-            required
-          />
-          <span className="popup__error" id="title-error"></span>
-          <input
-            name="link"
-            id="link"
-            className="popup__item popup__item_type_link"
-            type="url"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span className="popup__error" id="link-error"></span>
-        </PopupWithForm>
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
         <PopupWithForm title="Вы уверены?" name="confirmation"></PopupWithForm>
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
