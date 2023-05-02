@@ -80,6 +80,15 @@ function App() {
     handleUserInfo(api.setUserAvatar.bind(api), { avatar });
   }
 
+  function handleAddPlaceSubmit({ name, link }) {
+    api.addCard({ name, link })
+    .then((newCard) => {
+      setCards([newCard, ...cards]);
+      closeAllPopups();
+    })
+    .catch((err) => alert(err));
+  }
+
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCardList()])
     .then(([user, cards]) => {
@@ -104,7 +113,7 @@ function App() {
         />
         <Footer />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
         <PopupWithForm title="Вы уверены?" name="confirmation"></PopupWithForm>
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />

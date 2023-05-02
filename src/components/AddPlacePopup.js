@@ -2,18 +2,45 @@ import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+  const [title, setTitle] = React.useState('');
+  const [link, setLink] = React.useState('');
+
+  function handleInputChange(evt) {
+    const target = evt.target;
+    const value = target.value;
+    const name = target.name;
+
+    if (name === 'title') {
+        setTitle(value);
+      } else if (name === 'link') {
+        setLink(value);
+      }
+  }
+
+  function handleSubmit(evt) {
+      evt.preventDefault();
+      
+      onAddPlace({
+        name: title,
+        link,
+      });
+      }
+
   return (
     <PopupWithForm 
       title="Новое место" 
       name="card" 
       isOpen={isOpen} 
-      onClose={onClose}
+      onClose={onClose} 
+      onSubmit={handleSubmit}
     >
       <input
         name="title"
         id="title"
         className="popup__item popup__item_type_title"
         type="text"
+        value={title}
+        onChange={handleInputChange}
         placeholder="Название"
         minLength="2"
         maxLength="30"
@@ -25,6 +52,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         id="link"
         className="popup__item popup__item_type_link"
         type="url"
+        value={link}
+        onChange={handleInputChange}
         placeholder="Ссылка на картинку"
         required
       />
