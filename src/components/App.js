@@ -45,6 +45,15 @@ function App() {
     setIsConfirmPopupOpen(true);
 }
 
+  function closeAllPopups() {
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+    setIsConfirmPopupOpen(false);
+    setIsImagePopupOpen(false);
+    setSelectedCard({});
+  }
+
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     
@@ -56,21 +65,15 @@ function App() {
   }
 
   function handleCardDelete(card) {
+    setIsLoading(true);
+
     api.deleteCard(card._id)
     .then(() => {
       setCards(() => cards.filter((c) => c._id !== card._id));
       closeAllPopups();
     })
-    .catch((err) => alert(err));
-  }
-
-  function closeAllPopups() {
-    setIsEditAvatarPopupOpen(false);
-    setIsEditProfilePopupOpen(false);
-    setIsAddPlacePopupOpen(false);
-    setIsConfirmPopupOpen(false);
-    setIsImagePopupOpen(false);
-    setSelectedCard({});
+    .catch((err) => alert(err))
+    .finally(() => setIsLoading(false));;
   }
 
   function handleApiMethod(apiMethod, args, onSuccess) {
@@ -120,7 +123,7 @@ function App() {
         <Footer />
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isLoading={isLoading} />
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} isLoading={isLoading} />
-        <ConfirmPopup isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete} card={cardForDelete} />
+        <ConfirmPopup isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete} card={cardForDelete} isLoading={isLoading} />
         <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isLoading={isLoading} />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>

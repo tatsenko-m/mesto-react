@@ -14,7 +14,7 @@ function PopupWithForm({ title, name, children, isOpen, onClose, onSubmit, isLoa
 
   function getSaveButtonText(name, isLoading) {
     if (name === 'confirmation') {
-      return 'Да';
+      return isLoading ? 'Удаление...' : 'Да';
     } else if (name === 'card') {
       return isLoading ? 'Сохранение...' : 'Создать';
     } else {
