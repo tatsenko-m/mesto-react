@@ -36,7 +36,7 @@ class Api {
     });
   }
 
-  getInitialCards() {
+  getCardList() {
     return fetch(`${this._baseUrl}/cards`, {
       method: "GET",
       headers: this._headers
