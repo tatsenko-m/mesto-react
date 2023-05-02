@@ -71,6 +71,15 @@ function App() {
     .catch((err) => alert(err));
   }
 
+  function handleUpdateAvatar({ avatar }) {
+    api.setUserAvatar({ avatar })
+    .then((user) => {
+      setCurrentUser(user);
+      closeAllPopups();
+    })
+    .catch((err) => alert(err));
+  }
+
   React.useEffect(() => {
     Promise.all([api.getUserInfo(), api.getInitialCards()])
     .then(([user, cards]) => {
@@ -123,7 +132,7 @@ function App() {
           <span className="popup__error" id="link-error"></span>
         </PopupWithForm>
         <PopupWithForm title="Вы уверены?" name="confirmation"></PopupWithForm>
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
     </>
