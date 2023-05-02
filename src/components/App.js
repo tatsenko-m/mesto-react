@@ -63,30 +63,23 @@ function App() {
     setSelectedCard({});
   }
 
-  function handleUserInfo(apiMethod, args) {
+  function handleApiMethod(apiMethod, args, onSuccess) {
     apiMethod(args)
-      .then((user) => {
-        setCurrentUser(user);
-        closeAllPopups();
-      })
+      .then(onSuccess)
+      .then(closeAllPopups)
       .catch((err) => alert(err));
   }
   
   function handleUpdateUser({ name, about }) {
-    handleUserInfo(api.setUserInfo.bind(api), { name, about });
+    handleApiMethod(api.setUserInfo.bind(api), { name, about }, (user) => setCurrentUser(user));
   }
   
   function handleUpdateAvatar({ avatar }) {
-    handleUserInfo(api.setUserAvatar.bind(api), { avatar });
+    handleApiMethod(api.setUserAvatar.bind(api), { avatar }, (user) => setCurrentUser(user));
   }
-
+  
   function handleAddPlaceSubmit({ name, link }) {
-    api.addCard({ name, link })
-    .then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    })
-    .catch((err) => alert(err));
+    handleApiMethod(api.addCard.bind(api), { name, link }, (newCard) => setCards([newCard, ...cards]));
   }
 
   React.useEffect(() => {
