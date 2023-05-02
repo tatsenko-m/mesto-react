@@ -30,10 +30,10 @@ function PopupWithForm({ title, name, children, isOpen, onClose, onSubmit }) {
     };
 
     if (isOpen) {
-      window.addEventListener('keydown', handleEscKeyDown);
+      document.addEventListener('keydown', handleEscKeyDown);
     
       return () => {
-        window.removeEventListener('keydown', handleEscKeyDown);
+        document.removeEventListener('keydown', handleEscKeyDown);
       };
     }
   }, [isOpen, onClose]);
