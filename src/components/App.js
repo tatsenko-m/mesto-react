@@ -19,6 +19,7 @@ function App() {
   const [selectedCard, setSelectedCard] = React.useState({});
   const [currentUser, setCurrentUser] = React.useState({});
   const [cards, setCards] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
   
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -64,10 +65,13 @@ function App() {
   }
 
   function handleApiMethod(apiMethod, args, onSuccess) {
+    setIsLoading(true);
+
     apiMethod(args)
       .then(onSuccess)
       .then(closeAllPopups)
-      .catch((err) => alert(err));
+      .catch((err) => alert(err))
+      .finally(() => setIsLoading(false));
   }
   
   function handleUpdateUser({ name, about }) {
@@ -105,10 +109,10 @@ function App() {
           cards={cards}
         />
         <Footer />
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
-        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} isLoading={isLoading} />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} isLoading={isLoading} />
         <PopupWithForm title="Вы уверены?" name="confirmation"></PopupWithForm>
-        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+        <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} isLoading={isLoading} />
         <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
       </CurrentUserContext.Provider>
     </>

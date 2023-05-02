@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PopupWithForm({ title, name, children, isOpen, onClose, onSubmit }) {
+function PopupWithForm({ title, name, children, isOpen, onClose, onSubmit, isLoading }) {
   
   function getContainerClassName(name) {
     let className = 'popup__container';
@@ -12,13 +12,13 @@ function PopupWithForm({ title, name, children, isOpen, onClose, onSubmit }) {
     return className;
   }
 
-  function getSaveButtonText(name) {
+  function getSaveButtonText(name, isLoading) {
     if (name === 'confirmation') {
       return 'Да';
     } else if (name === 'card') {
-      return 'Создать';
+      return isLoading ? 'Сохранение...' : 'Создать';
     } else {
-      return 'Сохранить';
+      return isLoading ? 'Сохранение...' : 'Сохранить';
     }
   }
 
@@ -59,7 +59,7 @@ function PopupWithForm({ title, name, children, isOpen, onClose, onSubmit }) {
           <h2 className="popup__title">{title}</h2>
           {children}
           <button className="popup__save-button" type="submit">
-            {getSaveButtonText(name)}
+            {getSaveButtonText(name, isLoading)}
           </button>
         </form>
       </div>

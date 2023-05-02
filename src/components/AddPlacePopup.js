@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from './PopupWithForm';
 
-function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace, isLoading }) {
   const [title, setTitle] = React.useState('');
   const [link, setLink] = React.useState('');
 
@@ -32,7 +32,8 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       name="card" 
       isOpen={isOpen} 
       onClose={onClose} 
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit} 
+      isLoading={isLoading}
     >
       <input
         name="title"
