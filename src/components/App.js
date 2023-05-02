@@ -62,22 +62,21 @@ function App() {
     setSelectedCard({});
   }
 
-  function handleUpdateUser({ name, about }) {
-    api.setUserInfo({ name, about })
-    .then((user) => {
-      setCurrentUser(user);
-      closeAllPopups();
-    })
-    .catch((err) => alert(err));
+  function handleUserInfo(apiMethod, args) {
+    apiMethod(args)
+      .then((user) => {
+        setCurrentUser(user);
+        closeAllPopups();
+      })
+      .catch((err) => alert(err));
   }
-
+  
+  function handleUpdateUser({ name, about }) {
+    handleUserInfo(api.setUserInfo.bind(api), { name, about });
+  }
+  
   function handleUpdateAvatar({ avatar }) {
-    api.setUserAvatar({ avatar })
-    .then((user) => {
-      setCurrentUser(user);
-      closeAllPopups();
-    })
-    .catch((err) => alert(err));
+    handleUserInfo(api.setUserAvatar.bind(api), { avatar });
   }
 
   React.useEffect(() => {
