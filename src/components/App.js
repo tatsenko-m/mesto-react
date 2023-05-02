@@ -114,7 +114,6 @@ function App() {
           onEditAvatar={handleEditAvatarClick} 
           onCardClick={handleCardClick} 
           onCardLike={handleCardLike} 
-          onCardDelete={handleCardDelete} 
           onConfirm={handleConfirmClick} 
           cards={cards}
         />
