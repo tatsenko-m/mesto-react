@@ -13,10 +13,12 @@ function ConfirmPopup({ isOpen, onClose, onCardDelete, card, isLoading }) {
     <PopupWithForm 
       title="Вы уверены?" 
       name="confirmation" 
+      saveButtonText="Да" 
       isOpen={isOpen} 
       onClose={onClose} 
       onSubmit={handleSubmit} 
-      isLoading={isLoading}
+      isLoading={isLoading} 
+      loadingText="Удаление..."
     />
   );
 }
